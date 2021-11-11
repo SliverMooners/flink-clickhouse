@@ -55,6 +55,6 @@ public class MyClickHouseUtil extends RichSinkFunction<ClickHouseUser> {
         int[] ints = preparedStatement.executeBatch();
         connection.commit();
         long endTime = System.currentTimeMillis();
-        System.out.println("批量插入完毕用时：" + (endTime - startTime) + " -- 插入数据 = " + ints.length);
+        log.info("批量插入完毕用时：" + (endTime - startTime) + " -- 插入数据 = " + ints.length);
     }
 }
