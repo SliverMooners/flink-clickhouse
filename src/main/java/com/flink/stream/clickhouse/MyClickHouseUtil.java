@@ -3,9 +3,7 @@ package com.flink.stream.clickhouse;
 import com.alibaba.fastjson.JSON;
 import com.flink.stream.clickhouse.domain.ClickHouseUser;
 import com.flink.utils.ClickHouseUtil;
-import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 
