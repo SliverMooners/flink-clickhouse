@@ -40,6 +40,7 @@ public class KafkaSyncClickHouse {
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "localhost:9092");
         properties.setProperty("zookeeper.connect", "localhost:2181");
+        // 本地搭建环境可以在config/consumer.properties查看
         properties.setProperty("group.id", "test-consumer-group");
 
         FlinkKafkaConsumer010<String> myConsumer = new FlinkKafkaConsumer010<String>("chart", new SimpleStringSchema(),
