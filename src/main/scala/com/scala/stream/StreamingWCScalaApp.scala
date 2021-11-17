@@ -3,14 +3,7 @@ package com.scala.stream
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
 
-/**
- * <p/>
- * <li>title: 批处理WordCount程序</li>
- * <li>@author: li.pan</li>
- * <li>Date: 2019/12/29 14:43 下午</li>
- * <li>Version: V1.0</li>
- * <li>Description: 使用Scala开发Flink的实时处理应用程序</li>
- */
+
 object StreamingWCScalaApp {
 
   def main(args: Array[String]): Unit = {

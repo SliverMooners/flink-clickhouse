@@ -1,5 +1,6 @@
-package com.scala.stream.clickhouse.domain
+package com.scala.stream.clickhouse.sink
 
+import com.scala.stream.clickhouse.domain.ScalaPerson
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.functions.sink.{RichSinkFunction, SinkFunction}
 
@@ -7,11 +8,8 @@ import java.sql.{Connection, DriverManager, PreparedStatement}
 
 
 /**
-  * <p/> 
-  * <li>Description: 写入Mysql公用类别</li>
-  * <li>@author: panli0226@sina.com</li> 
-  * <li>Date: 2019-04-15 21:41</li> 
-  */
+ * 存入clickhouse
+ */
 class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
 
   private[stream] var connection: Connection = _

@@ -1,6 +1,7 @@
 package com.scala.stream.clickhouse
 
-import com.scala.stream.clickhouse.domain.{CustomSinkToClickHouse, ScalaPerson}
+import com.scala.stream.clickhouse.domain.ScalaPerson
+import com.scala.stream.clickhouse.sink.CustomSinkToClickHouse
 import org.apache.flink.api.common.functions.MapFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 
