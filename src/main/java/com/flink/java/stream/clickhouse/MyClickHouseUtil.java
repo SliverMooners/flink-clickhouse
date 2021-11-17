@@ -1,8 +1,8 @@
-package com.flink.stream.clickhouse;
+package com.flink.java.stream.clickhouse;
 
 import com.alibaba.fastjson.JSON;
-import com.flink.stream.clickhouse.domain.ClickHouseUser;
-import com.flink.utils.ClickHouseUtil;
+import com.flink.java.stream.clickhouse.domain.ClickHouseUser;
+import com.flink.java.utils.ClickHouseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;

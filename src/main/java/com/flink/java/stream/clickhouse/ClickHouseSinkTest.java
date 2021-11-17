@@ -1,6 +1,6 @@
-package com.flink.stream.clickhouse;
+package com.flink.java.stream.clickhouse;
 
-import com.flink.stream.clickhouse.domain.ClickHouseUser;
+import com.flink.java.stream.clickhouse.domain.ClickHouseUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;

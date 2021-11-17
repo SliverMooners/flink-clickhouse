@@ -1,4 +1,4 @@
-package com.flink.stream.clickhouse.domain;
+package com.flink.java.stream.clickhouse.domain;
 
 /**
  * @author fanc

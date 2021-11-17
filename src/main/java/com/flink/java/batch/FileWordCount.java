@@ -1,4 +1,4 @@
-package com.flink.batch.test;
+package com.flink.java.batch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.api.common.functions.FlatMapFunction;
