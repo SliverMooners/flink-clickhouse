@@ -1,8 +1,13 @@
 package com.scala.stream.clickhouse
 
+import com.scala.stream.clickhouse.domain.ScalaPerson
+import com.scala.stream.clickhouse.sink.CustomSinkToClickHouse
+import org.apache.flink.api.common.functions.MapFunction
 import org.apache.flink.api.common.serialization.SimpleStringSchema
+import org.apache.flink.streaming.api.datastream.DataStream
 import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
+import org.slf4j.LoggerFactory
 
 import java.util.Properties
 
@@ -12,6 +17,9 @@ import java.util.Properties
  * @Description ${kafka 接入demo}
  */
 object KafkaScalaSinkTest {
+
+  val logger = LoggerFactory.getLogger(this.getClass)
+
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     // 非常关键，一定要设置启动检查点！！
@@ -22,6 +30,7 @@ object KafkaScalaSinkTest {
     props.setProperty("bootstrap.servers", "localhost:9092")
     props.setProperty("zookeeper.connect", "localhost:2181")
     props.setProperty("group.id", "test-consumer-group")
+
     //读取数据
     val consumer = new FlinkKafkaConsumer010[String]("chart", new SimpleStringSchema(), props)
     //设置只读取最新数据
@@ -29,8 +38,14 @@ object KafkaScalaSinkTest {
     //添加kafka为数据源
     val stream = env.addSource(consumer)
 
-    stream.print()
-
+    val personStream = stream.map(new MapFunction[String, ScalaPerson] {
+      override def map(value: String): ScalaPerson = {
+        logger.info("fanc test ClickHouseScalaSinkTest value :{}",value)
+        val spilt = value.split(",")
+        ScalaPerson(Integer.parseInt(spilt(0)), spilt(1), Integer.parseInt(spilt(2)))
+      }
+    })
+    personStream.addSink(new CustomSinkToClickHouse)
     env.execute("KafkaScalaSinkTest")
   }
 }
