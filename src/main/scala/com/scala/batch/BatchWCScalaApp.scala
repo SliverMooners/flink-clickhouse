@@ -23,7 +23,7 @@ object BatchWCScalaApp {
       .map((_, 1))
       .groupBy(0)
       .sum(1).print()
-
+    // env.execute("BatchWCScalaApp")
   }
 
 }
