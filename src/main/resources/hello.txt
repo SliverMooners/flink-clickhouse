@@ -1,5 +1,3 @@
-hello
-hello fanc
-你好
-hello java
-hello flink
+111,fanc,24
+222,zhangsan,25
+333,lisi,26

@@ -3,6 +3,7 @@ package com.scala.stream.clickhouse.sink
 import com.scala.stream.clickhouse.domain.ScalaPerson
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.functions.sink.{RichSinkFunction, SinkFunction}
+import org.slf4j.LoggerFactory
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
 
@@ -11,6 +12,8 @@ import java.sql.{Connection, DriverManager, PreparedStatement}
  * 存入clickhouse
  */
 class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
+
+  val logger = LoggerFactory.getLogger(this.getClass)
 
   private[stream] var connection: Connection = _
   private[stream] var ps: PreparedStatement = _
@@ -36,7 +39,7 @@ class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
     connection = getConnection()
     val sql = "INSERT INTO fanc.user_table (id, name, age) VALUES (?,?,?)"
     ps = connection.prepareStatement(sql)
-    System.out.println("open")
+    logger.info("fanc test open")
   }
 
 
@@ -49,7 +52,7 @@ class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
     */
   @throws[Exception]
   override def invoke(value: ScalaPerson, context: SinkFunction.Context[_]): Unit = {
-    System.out.println("invoke~~~~~~~~~")
+    logger.info("fanc test invoke")
     // 未前面的占位符赋值
     ps.setInt(1, value.id)
     ps.setString(2, value.name)
