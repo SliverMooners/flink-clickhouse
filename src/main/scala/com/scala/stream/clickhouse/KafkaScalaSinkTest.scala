@@ -4,9 +4,8 @@ import com.scala.stream.clickhouse.domain.ScalaPerson
 import com.scala.stream.clickhouse.sink.CustomSinkToClickHouse
 import org.apache.flink.api.common.functions.MapFunction
 import org.apache.flink.api.common.serialization.SimpleStringSchema
-import org.apache.flink.streaming.api.datastream.DataStream
 import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 import org.slf4j.LoggerFactory
 
 import java.util.Properties
@@ -32,7 +31,7 @@ object KafkaScalaSinkTest {
     props.setProperty("group.id", "test-consumer-group")
 
     //读取数据
-    val consumer = new FlinkKafkaConsumer010[String]("chart", new SimpleStringSchema(), props)
+    val consumer = new FlinkKafkaConsumer[String]("chart", new SimpleStringSchema(), props)
     //设置只读取最新数据
     consumer.setStartFromLatest()
     //添加kafka为数据源
@@ -45,7 +44,9 @@ object KafkaScalaSinkTest {
         ScalaPerson(Integer.parseInt(spilt(0)), spilt(1), Integer.parseInt(spilt(2)))
       }
     })
-    personStream.addSink(new CustomSinkToClickHouse)
+    personStream.print()
+
+    // personStream.addSink(new CustomSinkToClickHouse)
     env.execute("KafkaScalaSinkTest")
   }
 }

@@ -8,7 +8,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 
 import java.util.Properties;
 
@@ -39,7 +39,7 @@ public class KafkaSyncClickHouse {
         // 本地搭建环境可以在config/consumer.properties查看
         properties.setProperty("group.id", "test-consumer-group");
 
-        FlinkKafkaConsumer010<String> myConsumer = new FlinkKafkaConsumer010<>("chart", new SimpleStringSchema(),
+        FlinkKafkaConsumer<String> myConsumer = new FlinkKafkaConsumer<>("chart", new SimpleStringSchema(),
                 properties);
 
         //添加数据源，此处选用数据流的方式，将KafKa中的数据转换成Flink的DataStream类型

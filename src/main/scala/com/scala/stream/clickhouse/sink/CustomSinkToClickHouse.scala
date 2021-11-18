@@ -51,7 +51,7 @@ class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
     * @throws Exception
     */
   @throws[Exception]
-  override def invoke(value: ScalaPerson, context: SinkFunction.Context[_]): Unit = {
+  override def invoke(value: ScalaPerson, context: SinkFunction.Context): Unit = {
     logger.info("fanc test invoke")
     // 未前面的占位符赋值
     ps.setInt(1, value.id)
