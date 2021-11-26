@@ -24,7 +24,7 @@ class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
     */
   def getConnection() = {
     Class.forName("ru.yandex.clickhouse.ClickHouseDriver")
-    DriverManager.getConnection("jdbc:clickhouse://10.24.19.31:8123")
+    DriverManager.getConnection("jdbc:clickhouse://127.0.0.1:8123","default","123456")
   }
 
   /**
@@ -52,7 +52,7 @@ class CustomSinkToClickHouse extends RichSinkFunction[ScalaPerson] {
     */
   @throws[Exception]
   override def invoke(value: ScalaPerson, context: SinkFunction.Context): Unit = {
-    logger.info("fanc test invoke")
+    logger.info("fanc test invoke userid: {}",value.id )
     // 未前面的占位符赋值
     ps.setInt(1, value.id)
     ps.setString(2, value.name)
